@@ -1,0 +1,61 @@
+:root {
+  color: rgba(220, 255, 107, 0.87);
+  background-color: #0a0808;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: 'BusMatrixCondensed';
+  font-weight: bolder;
+  font-size: 96px;
+}
+
+body {
+  font-family: 'wwDigital';
+  font-size: 24px;
+}
+
+.headingNav{
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  align-self: right;
+  align-content: right;
+  float: right;
+  justify-content: space-between;
+  font-family: 'wwDigital';
+  font-size: 14px;
+}
+
+.headingNav button {
+  margin: 10px 20px;
+  font-family: 'wwDigital';
+  font-size: 14px;
+}
+
+.headingNav button:hover {
+  background-color: rgb(235, 175, 175);
+}
+
+@font-face {
+  font-family: 'BusMatrixCondensed';
+  src: local('BusMatrixCondensed'), url(./fonts/BusMatrixCondensed.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'wwDigital';
+  src: local('wwDigital'), url(./fonts/wwDigital.ttf) format('truetype');
+}
+
+/* body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+} */
+
+
