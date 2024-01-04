@@ -95,7 +95,7 @@ export default function Tree() {
       }
     
     return (
-    <div> Tree
+    <div>
         <svg ref={svgRef} id="myTree">
         </svg>
       </div>

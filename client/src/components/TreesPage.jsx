@@ -4,8 +4,7 @@ export default function TreesPage() {
   return (
 
          <div>
-        my love of trees
-
+        this is just a silly-clicky thing. click on the red dot, make it grow, think about life...
         <Tree />
         </div>
 
