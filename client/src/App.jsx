@@ -2,11 +2,13 @@
 import {Route, Routes} from 'react-router-dom';
 import { Link, animateScroll as scroll } from "react-scroll";
 import NavBar from './components/NavBar'
-import TreesPage from './components/TreesPage'
-import CV from './components/CV'
+import TreesPage from './pages/TreesPage'
+import CV from './pages/CV'
+import CVElement from './components/CVElement';
 import ScrapingDemo from './components/ScrapingDemo';
-import Homepage from './components/Homepage';
+import Homepage from './pages/Homepage';
 import Contact from './pages/Contact';
+
 import './App.css'
 
 
@@ -29,7 +31,10 @@ function App() {
     <Routes> 
       <Route path="/" element={<Homepage />}/>
       <Route path="/trees" element={<TreesPage/>} />
-      <Route path="/cv" element={<CV/>} />
+      {/* <Route path="/cv" element={<CV/>} /> */}
+      <Route path="/cv" element={<CV />}>
+          <Route path="/cv/:id" element={<CVElement />} />
+        </Route>
       <Route path="/scrapingdemo" element={<ScrapingDemo/>} />
       <Route path="/contact" element={<Contact />} />
     </Routes> 
