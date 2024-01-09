@@ -4,7 +4,7 @@ import * as d3 from "d3";
 
 export default function Tree() {
     const svgRef = useRef();
-    const width = 928;
+    const width = 1640;
     const height = width;
     const cx = width * 0.5; // adjust as needed to fit
     const cy = height * 0.5; // adjust as needed to fit
@@ -36,6 +36,7 @@ export default function Tree() {
     }
 
     function addLeaf(event, node) {
+        console.log("d : " + node)
         setCount(count+1)
         const leaf = {parentId : +event.target.__data__.data.id, id: count, children: undefined}
         updateChildren(leaf)
@@ -67,16 +68,17 @@ export default function Tree() {
           .selectAll()
           .data(root.links())
           .join("path")
+
           .attr(
             "d",
-            d3
-              .linkRadial()
+            d3.linkRadial()
               .angle((d) => d.x)
               .radius((d) => d.y)
           )
           .attr("stroke", "#e03616")
-          .attr("stroke-width",  6)
-          .attr("stroke-dasharray", 12)
+          .attr("stroke-width",  4)
+        
+          
           
         svg
           .append("g")
@@ -96,6 +98,7 @@ export default function Tree() {
     
     return (
     <div>
+      this one is just a silly clicky-thing. click on the dots to make it grow
         <svg ref={svgRef} id="myTree">
         </svg>
       </div>

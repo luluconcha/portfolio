@@ -39,7 +39,9 @@ body {
 .headingNav button:hover {
   background-color: rgb(235, 175, 175);
 }
-
+.headingNav > .active {
+  border-bottom: 1px solid #333;
+}
 @font-face {
   font-family: 'BusMatrixCondensed';
   src: local('BusMatrixCondensed'), url(./fonts/BusMatrixCondensed.ttf) format('truetype');
