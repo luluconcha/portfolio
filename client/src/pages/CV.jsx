@@ -7,14 +7,26 @@ export default function CV() {
   const [data, setData] = useState()
   const [wait, setWait] = useState(true)
   const [showDetails, setShowDetails] = useState(false)
-  
+  const [details, setDetails] = useState()
+  const [skills, setSkills] = useState()
+
   useEffect(() => {
     getDetails()
   }, [])
 
   async function getDetails(){
+    setWait(true)
+
     const response = await axios.get('/api/index')
-    const data = await response.data
+    
+    const data = await response.data.map((d) => {
+      return {
+        id: d.id,
+        title: d.title,
+        details: d._details_.map((e, i) => {return {id: i, skill: e, parentId: d.id}}),
+        skills: d._skills_.map((e, i) => {return {id: i, skill: e, parentId: d.id}})
+      }})
+
     setData(data)
     setWait(false)
     console.log(data)
@@ -36,30 +48,41 @@ async function growBranches(e) {
   }
 }
 
-function handleClick() {
+function handleClick(e) {
   // not passing the id actually
   // make the button a link?
   // const details = document.getElementById("details-section")
   // details.style.display === "none" ? details.style.display = "block" : details.style.display = "none" 
-  // 
-  showDetails ? setShowDetails(false) : setShowDetails(true)
-  // console.log("details : " + data[e.target.value]._details_)
+  setDetails(data[e.target.value].details)
+  setShowDetails(!showDetails)
+  console.log(data[e.target.value].details)
+  // console.log("details : " + data[e.target.value].details)
+  console.log(e)
+  // return <CVElement data={{el: data[e.id]}}/>
+}
 
-  // return <div>
-  //         <p>{data[d.target.value]._details_}</p><p>{data[d.target.value]._skills_}</p><p>{data[d.target.value].institution}</p>
-  //         </div>
+function hide() {
+  setShowDetails(false)
 }
   return (
         <div>
-          {wait ? "wait..."
-          : data.map((d, i) => {
-            return (<div key={d.id}>
-                {d.title}
-                  <br />
-                    <button onClick={handleClick}> show details </button>
-                    <div> {showDetails ? <p>{d._details_}</p> : null }</div>
-                      </div>)}).reverse()}
-             {/* <div id="details-section"> {data && data.institution} <br /> {data && data.details}</div> */}
+          {wait ? "wait..." 
+            : data && data.map((d, i) => {
+              return (<div className="cv-title" key={d.id}>{d.title}<br />
+                <button id="show-details-button" value={i} onClick={(e) => handleClick(e)}>
+                  view details
+                  </button>
+              </div>)
+            })}
+          <div>
+          <div>
+                  {showDetails ? details.map((e) => {
+                    return e.skill 
+                  }) : ""}
+                  {showDetails ? <button onClick={hide}> x </button> : ""}
+                  {/* {details && details} */}
+                </div>
+            </div>
         </div>
         
  

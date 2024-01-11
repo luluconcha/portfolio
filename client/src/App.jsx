@@ -1,6 +1,7 @@
 
 import {Route, Routes} from 'react-router-dom';
-import { Link, animateScroll as scroll } from "react-scroll";
+import { useEffect } from 'react';
+import { Link, Button, Events, Element, animateScroll as scroll, scrollSpy } from "react-scroll";
 import NavBar from './components/NavBar'
 import TreesPage from './pages/TreesPage'
 import CV from './pages/CV'
@@ -13,31 +14,41 @@ import './App.css'
 
 
 function App() {
-  
+  useEffect(() => {
+    
+    // Registering the 'begin' event and logging it to the console when triggered.
+    Events.scrollEvent.register('begin', (to, element) => {
+      console.log('begin', to, element);
+    });
+
+    // Registering the 'end' event and logging it to the console when triggered.
+    Events.scrollEvent.register('end', (to, element) => {
+      console.log('end', to, element);
+    });
+
+    // Updating scrollSpy when the component mounts.
+    scrollSpy.update();
+    console.log(scrollSpy)
+
+    // Returning a cleanup function to remove the registered events when the component unmounts.
+    return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
+
 
   return (
     <>
-        <NavBar />
-        <div id="homepage-wrapper">
-          <Homepage title="homepage" subtitle="home to the page" dark={true} id="homepage"/>
-            </div>
-        <div id="tree-wrapper">
-          <TreesPage title="trees" subtitle="my love of trees, et al." dark={false} id="trees"/>
-          </div>
-        <div id="cv-wrapper">
-          <CV title="curriculum" subtitle="brutal experience" dark={false} id="curriculum"/>
-            </div>
- 
-    <Routes> 
-      <Route path="/" element={<Homepage />}/>
-      <Route path="/trees" element={<TreesPage/>} />
-      {/* <Route path="/cv" element={<CV/>} /> */}
-      <Route path="/cv" element={<CV />}>
-          <Route path="/cv/:id" element={<CVElement />} />
-        </Route>
-      <Route path="/scrapingdemo" element={<ScrapingDemo/>} />
-      <Route path="/contact" element={<Contact />} />
-    </Routes> 
+    <header id="navbar-appjsx">
+    <NavBar/> 
+      </header>
+           
+        <Element name="homepage" className="element"> <Homepage /> </Element>
+          <Element name="projects" className="element"> <TreesPage /> </Element>
+            <Element name="cv" className="element"><CV/></Element>
+              <Element name="contact" className="element"><Contact/></Element>
+  
   </>
   )
 }

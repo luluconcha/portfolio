@@ -1,47 +1,101 @@
 :root {
   color: rgba(220, 255, 107, 0.87);
-  background-color: #0a0808;
+  background-color: black;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* * { border: 1px solid red } */
+/* h1 {
+  font-family: 'BusMatrixCondensed';
+  font-weight: bolder;
+  font-size: 96px;
+} */
 
-h1 {
+body {
+  font-family: 'wwDigital';
+  font-size: 24px;
+  padding-right:20%;
+  padding-left: 20%;
+  text-align: center;
+}
+
+#navbar-appjsx {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  z-index: 3;
+  position: fixed !important;
+  background: black;
+}
+
+.page-header {
+  columns: 3;
+  position: fixed !important;
+  display: block;
+  /* padding-left: 70em; */
+  text-align: center;
+  width: 100%;
+  justify-content: right;
+  font-family: 'wwDigital';
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  justify-content: space-between;
+  background: black;
+ 
+}
+
+#navbar-appjsx button {
+  /* margin: 10px 20px; */
+  font-family: 'wwDigital';
+  font-size: 14px;
+  height: 30px;
+  float:right;
+  align-self: right;
+  justify-self: right;
+  background: none;
+  border: none;
+  color: white;
+}
+#navbar-appjsx h1 {
+  float: left;
+  margin: 30px;
   font-family: 'BusMatrixCondensed';
   font-weight: bolder;
   font-size: 96px;
 }
 
-body {
-  font-family: 'wwDigital';
-  font-size: 24px;
-}
-
-.headingNav{
-  display: flex;
-  flex-direction: row;
-  align-items: right;
-  align-self: right;
-  align-content: right;
+#navbar-appjsx button {
   float: right;
-  justify-content: space-between;
-  font-family: 'wwDigital';
-  font-size: 14px;
 }
 
-.headingNav button {
-  margin: 10px 20px;
-  font-family: 'wwDigital';
-  font-size: 14px;
+#navbar-appjsx button:hover {
+  text-shadow: 7px 7px 7px rgba(220, 255, 107, 0.87);;
+}
+#navbar-appjsx > .active {
+  /* border-bottom: 1px solid #333; */
+  color: white;
+  text-shadow: 4px #c8d239;
 }
 
-.headingNav button:hover {
-  background-color: rgb(235, 175, 175);
+#homepage {
+  padding-top: 20em;
+  /* text-align: center; */
 }
-.headingNav > .active {
-  border-bottom: 1px solid #333;
+.element {
+  min-height: 1048px;
+  /* padding-left: 6em;
+  padding-right: 6em; */
 }
+
 @font-face {
   font-family: 'BusMatrixCondensed';
   src: local('BusMatrixCondensed'), url(./fonts/BusMatrixCondensed.ttf) format('truetype');
@@ -52,12 +106,12 @@ body {
   src: local('wwDigital'), url(./fonts/wwDigital.ttf) format('truetype');
 }
 
-/* body {
+body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  /* place-items: center; */
+  /* min-width: 320px; */
   min-height: 100vh;
-} */
+}
 
 

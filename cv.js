@@ -14,7 +14,7 @@ module.exports = [
                     "html, css",
                     "node.js, express, vite",
                     "mysql, sequelize",
-                    "always be very consistent when naming the parentId",
+                    "check your camelcase",
                     "postman", 
                     "github, *git*", 
                     "collaborative git",
@@ -32,7 +32,9 @@ module.exports = [
                 "title" : "introduction to java",
                 "institution" : "barcelona activa",
                 "date" : "03-2023:04-2023",
-                "_details_" : "basic principles of back-end programming",
+                "_details_" : [
+                    "basic principles of back-end programming"
+                ],
                 "_skills_" :[
                     "functions",
                     "object-oriented programming",

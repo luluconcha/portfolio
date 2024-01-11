@@ -10,6 +10,15 @@ router.get("/", async (req, res) => {
         res.status(500).send("education could not be fetched, " + err.message)
     }
 })
+router.get("/:id", async (req, res) => {
+    const { id } = req.params
+    // const pokemon = data.find((p) => p.id === req.params.id)
+    try {
+        res.status(201).send({data: data[id]})
+    } catch (err) {
+        res.status(500).send("education could not be fetched, " + err.message)
+    }
+})
 // gotta do a nodemailer thing
 router.post("/", async (req, res) => {
     const {email, text, title} = req.body
