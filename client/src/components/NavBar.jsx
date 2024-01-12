@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, animateScroll as scroll } from "react-scroll";
 import { useState } from 'react';
+
 export default function NavBar() {
-  const [isActive, setActive] = useState(false)
+  
   const [header, setHeader] = useState("welcome")
   const scrollToTop = () => {
     scroll.scrollToTop({smooth: true})
@@ -10,8 +11,7 @@ export default function NavBar() {
 
   const handleSetActive = (to) => {
     console.log(to);
-    setActive(true)
-    to === "homepage" ? setHeader(null) : setHeader(`${to}`.toUpperCase())
+    to === "homepage" ? setHeader("LULUCONCHA") : setHeader(`${to}`.toUpperCase())
   };
 
   return (

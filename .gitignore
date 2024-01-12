@@ -8,3 +8,4 @@
 .DS_Store
 package-lock.json
 /public/images/avatar
+cv.js

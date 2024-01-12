@@ -1,5 +1,5 @@
 :root {
-  color: rgba(220, 255, 107, 0.87);
+  color: #dcff6bde;
   background-color: black;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,8 +19,22 @@ body {
   padding-right:20%;
   padding-left: 20%;
   text-align: center;
+  margin: 0;
+  display: flex;
+  /* place-items: center; */
+  /* min-width: 320px; */
+  min-height: 100vh;
 }
 
+p {
+  font-family: 'Code_New_Roman';
+  font-size: 22px;
+
+}
+#instructions {
+  font-family: 'Perfect_DOS_VGA';
+  font-size: 16px;
+}
 #navbar-appjsx {
   position: fixed;
   top: 0;
@@ -50,7 +64,6 @@ body {
   align-content: center;
   justify-content: space-between;
   background: black;
- 
 }
 
 #navbar-appjsx button {
@@ -65,6 +78,7 @@ body {
   border: none;
   color: white;
 }
+
 #navbar-appjsx h1 {
   float: left;
   margin: 30px;
@@ -78,22 +92,49 @@ body {
 }
 
 #navbar-appjsx button:hover {
-  text-shadow: 7px 7px 7px rgba(220, 255, 107, 0.87);;
+  text-shadow: 7px 7px 7px rgba(220, 255, 107, 0.87);
 }
+
 #navbar-appjsx > .active {
-  /* border-bottom: 1px solid #333; */
   color: white;
-  text-shadow: 4px #c8d239;
+  text-shadow: 7px 7px 7px #c8d239;
 }
 
 #homepage {
   padding-top: 20em;
-  /* text-align: center; */
 }
+
 .element {
   min-height: 1048px;
-  /* padding-left: 6em;
-  padding-right: 6em; */
+}
+
+.cv-grid-page {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.cv-date-column {
+  text-align: left
+}
+
+.cv-title-column {
+  text-align: left;
+}
+
+.cv-skills-column {
+  text-align: left;
+ }
+
+.normal-skill {
+  text-shadow: 0px 7px 7px rgba(220, 255, 107, 0.87);
+}
+.highlighted-skill {
+  font-size: 16px;
+}
+
+.cv-details {
+  font-size: 14px;
 }
 
 @font-face {
@@ -106,12 +147,39 @@ body {
   src: local('wwDigital'), url(./fonts/wwDigital.ttf) format('truetype');
 }
 
-body {
-  margin: 0;
-  display: flex;
-  /* place-items: center; */
-  /* min-width: 320px; */
-  min-height: 100vh;
+@font-face {
+  font-family: 'Jupiteroid-Bold';
+  src: local('Jupiteroid-Bold'), url(./fonts/Jupiteroid-Bold.ttf) format('truetype');
 }
 
 
+@font-face {
+  font-family: 'Jupiteroid-Light';
+  src: local('Jupiteroid-Light'), url(./fonts/Jupiteroid-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Code_New_Roman';
+  src: local('Code_New_Roman'), url(./fonts/Code_New_Roman.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'F25_Bank_Printer';
+  src: local('F25_Bank_Printer'), url(./fonts/F25_Bank_Printer.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'CQ_Mono';
+  src: local('CQ_Mono'), url(./fonts/CQ_Mono.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Perfect_DOS_VGA';
+  src: local('Perfect_DOS_VGA'), url(./fonts/Perfect_DOS_VGA.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Tox_Typewriter';
+  src: local('Tox_Typewriter'), url(./fonts/Tox_Typewriter.ttf) format('truetype');
+}

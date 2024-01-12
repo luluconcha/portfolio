@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../cv.js");
-require("dotenv").config({path : "../.env"})
+require('dotenv').config()
+const nodemailer = require('nodemailer') 
 
 router.get("/", async (req, res) => {
     try {
@@ -12,7 +13,6 @@ router.get("/", async (req, res) => {
 })
 router.get("/:id", async (req, res) => {
     const { id } = req.params
-    // const pokemon = data.find((p) => p.id === req.params.id)
     try {
         res.status(201).send({data: data[id]})
     } catch (err) {
@@ -21,16 +21,20 @@ router.get("/:id", async (req, res) => {
 })
 // gotta do a nodemailer thing
 router.post("/", async (req, res) => {
-    const {email, text, title} = req.body
+    const {email, title, content} = req.body
     try {
-        const response = await sendMail(email, text, title)
-        res.status(201).send({data: response})
+        console.log(title)
+        sendMail(email, title, content)
+        // setTimeout(() => {
+          res.status(201).send("email was sent, maybe")  
+        // }, 5000);
     } catch(err) {
-        res.status(500).send("email could not be sent")
+        res.status(500).send("email could definitely not be sent")
     }
 })
 
-async function sendMail(email_address, text, title) {
+async function sendMail(email, title, content) {
+  // const {email, title, content} = data
     try {
        const transporter = nodemailer.createTransport({
           host: '127.0.0.1',
@@ -44,17 +48,25 @@ async function sendMail(email_address, text, title) {
             rejectUnauthorized: false
           }
         })
-        // remove email_address and array brackets from "to:" to stop actually sending
+       
+        console.log(process.env)
+      console.log("we're in the back end")
       const message = {
         from: `${process.env.MASTER_EMAIL}`,
-        to: [`${process.env.MASTER_EMAIL}`, `${email_address}`],
+        to: `${process.env.OTHER_EMAIL}`,
         subject: `${title}`,
-        text: `${text}`,
+        text: `${content} from ${email}`,
+        html: `<p>${content}</p><br /><br /> from ${email}`
       }
+
+      console.log('message created?')
+      console.log(message)
       const info = await transporter.sendMail(message)
-    //   const response = `Email sent: ${info.response}`
-    //   console.log(response)
-      return info.response
+      //back end does not read this
+      console.log("message sent?")
+      const response = `Email sent: ${info.response}`
+      console.log("response" + response)
+      return response
   
     } catch (err) {
       return err;
