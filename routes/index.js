@@ -23,18 +23,15 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     const {email, title, content} = req.body
     try {
-        console.log(title)
         sendMail(email, title, content)
-        // setTimeout(() => {
-          res.status(201).send("email was sent, maybe")  
-        // }, 5000);
+          res.status(201).send("email was sent")  
     } catch(err) {
         res.status(500).send("email could definitely not be sent")
     }
 })
 
 async function sendMail(email, title, content) {
-  // const {email, title, content} = data
+
     try {
        const transporter = nodemailer.createTransport({
           host: '127.0.0.1',
@@ -49,23 +46,17 @@ async function sendMail(email, title, content) {
           }
         })
        
-        console.log(process.env)
-      console.log("we're in the back end")
       const message = {
         from: `${process.env.MASTER_EMAIL}`,
         to: `${process.env.OTHER_EMAIL}`,
-        subject: `${title}`,
+        subject: `${title}` || 'contact from portfolio',
         text: `${content} from ${email}`,
         html: `<p>${content}</p><br /><br /> from ${email}`
       }
 
-      console.log('message created?')
-      console.log(message)
       const info = await transporter.sendMail(message)
-      //back end does not read this
-      console.log("message sent?")
       const response = `Email sent: ${info.response}`
-      console.log("response" + response)
+
       return response
   
     } catch (err) {

@@ -137,6 +137,18 @@ p {
   font-size: 14px;
 }
 
+#show-details-button {
+  font-family: 'wwDigital';
+  font-size: 14px;
+  height: 20px;
+  /* float:right;
+  align-self: right;
+  justify-self: right; */
+  background: none;
+  border: none;
+  color: #dcff6bde;
+}
+
 @font-face {
   font-family: 'BusMatrixCondensed';
   src: local('BusMatrixCondensed'), url(./fonts/BusMatrixCondensed.ttf) format('truetype');

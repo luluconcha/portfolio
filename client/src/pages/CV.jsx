@@ -9,7 +9,7 @@ export default function CV() {
   const [showDetails, setShowDetails] = useState(false)
   const [details, setDetails] = useState()
   const [highlightID, setHighlightID] = useState()
-
+  const [detailsId, setDetailsId] = useState()
 
   useEffect(() => {
     getDetails()
@@ -76,22 +76,24 @@ function setHighlight(id) {
                           </div>
                           <div className="cv-skills-column">
                              {d.skills && d.skills.map((s) => {
-                              return (<div key={s.id}>
-                               <p>
+                              return (<div key={s.id} id="instructions">
+                       
                                {s.skill}
-                               </p> 
+                            
                                
                          
                               </div>)})}
                           </div>
                         </div>
                 )}).reverse()}
-       
+                <div className="cv-details">
+                  
+                </div>
          
-     
-                {/* <div className="cv-skills-colum"> */}
-                {/* <Skills data={data} id={highlightID}/> */}
-                {/* </div> */}
+{/*      
+                <div className="cv-skills-colum">
+                <Skills data={data} id={highlightID}/>
+                </div> */}
             
                
 
