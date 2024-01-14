@@ -44,39 +44,42 @@ function hide() {
   setShowDetails(false)
 }
 
-function setHighlight(id) {
+function setHighlight(e, id) {
+  e.preventDefault()
   setHighlightID(id)
   console.log(id)
 }
   return (
-    <div>
+    <div className="cv-page">
       <header> <h2> my path to web dev</h2>
       <p id="instructions"> I did not come directly into coding: it's been quite the journey. See below.</p></header>
       <br /> <br /> 
-        <div className="cv-grid">
+        <div>
          
             {wait ? "wait..." 
               : data && data.map((d, i) => {
-                return (<div className="cv-grid-page">
+                return ( <div>
+                <div className="cv-grid-page">
                           <div className="cv-date-column" key={d.id}>
                             {d.date}
                           </div>
-                          <div className="cv-title-column" key={d.id * 0.7} onMouseOver={() => setHighlight(d.id)}>
+                          <div className="cv-title-column" key={d.id * 0.7} onMouseOver={(e) => setHighlight(e, d.id)}>
                                   {/* <CVElement data={data} id={d.id} setHighlight={setHighlight}/> */}
                                   
                                   {d.title}<br />
-                                    <button id="show-details-button" value={i} onClick={(e) => handleClick(e)}>
-                                      {showDetails ? "hide" : "know more"}
-                                    </button>
+                                    {/* <button id="show-details-button" value={i} onClick={(e) => handleClick(e)}> */}
+                                      {/* {showDetails ? "hide" : "know more"} */}
+                                    {/* </button> */}
 
                                     {showDetails ? d.details.map((e) => {
                                       return (<div key={e.id}>
                                             <p className="cv-details"> {e.detail}</p>
                                     </div>)}) : ""} 
                           </div>
+
                           <div className="cv-skills-column">
                              {d.skills && d.skills.map((s) => {
-                              return (<div key={s.id} id="instructions">
+                              return (<div key={s.id} id="instructions" className={s.parentID === highlightID ? "highlighted-skill" : "normal-skill" }>
                        
                                {s.skill}
                             
@@ -84,6 +87,7 @@ function setHighlight(id) {
                          
                               </div>)})}
                           </div>
+                        </div>
                         </div>
                 )}).reverse()}
                 <div className="cv-details">

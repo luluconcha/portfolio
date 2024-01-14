@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
+import axios from 'axios'
 
-export default function Tree() {
+export default function Tree({leaves}) {
     const svgRef = useRef();
     const width = 1640;
     const height = width;
@@ -10,15 +10,17 @@ export default function Tree() {
     const cy = height * 0.5; // adjust as needed to fit
    // const radius = Math.min(width, height) / 3 - 40;
     const [count, setCount] = useState(2)
-    const [leaves, setLeaves] = useState([{ parentId : undefined, id: 1, children: undefined}]);
-    
+
+    // const [leaves, setLeaves] = useState();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState()
+
     useEffect(() => {
-    createTree();
+      createTree()
     }, [leaves])
 
     function createTree() {
-        console.log(leaves)
-
+      
         const root = d3
             .stratify()
             .id((d) => d.id)
@@ -34,11 +36,18 @@ export default function Tree() {
 
         drawTree(tree)
     }
-    
-    function addLeaf(event, node) {
-        console.log("d : " + node)
+
+
+    function deleteLeaf(node) {
+      const sickLeaf = leaves.find((l) => l.id === node.id)
+      
+      setLeaves(leaves.filter((l) => l !== sickLeaf.children && l !== sickLeaf))
+      
+    }
+
+    function addLeaf(parentNode) {
         setCount(count+1)
-        const leaf = {parentId : +event.target.__data__.data.id, id: count, children: undefined}
+        const leaf = {parentId : parentNode.id, id: count, children: undefined}
         updateChildren(leaf)
         setLeaves([...leaves, leaf])
     }
@@ -91,7 +100,7 @@ export default function Tree() {
           )
           .attr("fill", "#e03616")
           .attr("r", 7)
-          .on("click", (e, d) => addLeaf(e, d));
+          .on("click", (d) => deleteLeaf(d));
 
         console.log(root.descendants()) 
       }

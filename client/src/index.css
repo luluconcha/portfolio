@@ -107,11 +107,17 @@ p {
 .element {
   min-height: 1048px;
 }
-
+.cv-page {
+  margin-bottom: 300px;
+}
 .cv-grid-page {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  border-radius: 24px;
+  border-style: dashed;
+  padding: 10px;
+  margin: 10px;
 }
 
 .cv-date-column {
@@ -126,10 +132,19 @@ p {
   text-align: left;
  }
 
-.normal-skill {
-  text-shadow: 0px 7px 7px rgba(220, 255, 107, 0.87);
+ .cv-details {
+  font-family: 'Perfect_DOS_VGA';
+  font-size: 8px;
+  line-height: 75%;
+  
 }
+
 .highlighted-skill {
+  text-shadow: 0px 7px 7px rgba(220, 255, 107, 0.87);
+  font-size: 24px;
+}
+
+.normal-skill {
   font-size: 16px;
 }
 
@@ -147,6 +162,19 @@ p {
   background: none;
   border: none;
   color: #dcff6bde;
+}
+
+.send-email-button {
+  font-family: 'wwDigital';
+  font-size: 22px;
+  border: 10px dashed #dcff6bde;;
+  color: #dcff6bde;
+  background-color: black;
+  border-color: #dcff6bde;
+  border-width: 2px;
+  border-radius: 12px;
+  height: 50px;
+  width: 100px;
 }
 
 @font-face {
