@@ -11,7 +11,7 @@ export default function NavBar() {
 
   const handleSetActive = (to) => {
     console.log(to);
-    to === "homepage" ? setHeader("LULUCONCHA") : setHeader(`${to}`.toUpperCase())
+    to === "homepage" ? setHeader("PORTFOLIO") : setHeader(`${to}`.toUpperCase())
   };
 
   return (

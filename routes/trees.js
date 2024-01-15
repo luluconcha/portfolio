@@ -14,6 +14,9 @@ router.get("/", async (req, res) => {
 })
 
 async function createRandomTree() {
+  
+ leaves =[{ parentId : null, id: 1, children: undefined}]
+
     for (let i = 0; leaves.length <= 26; i++) {
         ++count
         const parentNode = Math.floor(Math.random() * leaves.length)

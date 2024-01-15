@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import axios from 'axios'
 
-export default function Tree({leaves}) {
+export default function Tree({leaves, setLeaves}) {
     const svgRef = useRef();
     const width = 1640;
     const height = width;
@@ -46,10 +46,11 @@ export default function Tree({leaves}) {
     }
 
     function addLeaf(parentNode) {
-        setCount(count+1)
-        const leaf = {parentId : parentNode.id, id: count, children: undefined}
-        updateChildren(leaf)
-        setLeaves([...leaves, leaf])
+      console.log(parentNode)
+        // setCount(count+1)
+        // const leaf = {parentId : parentNode.id, id: count, children: undefined}
+        // updateChildren(leaf)
+        // setLeaves([...leaves, leaf])
     }
     
     function updateChildren(newNode) {
@@ -100,14 +101,14 @@ export default function Tree({leaves}) {
           )
           .attr("fill", "#e03616")
           .attr("r", 7)
-          .on("click", (d) => deleteLeaf(d));
+          .on("click", (d) => addLeaf(d));
 
         console.log(root.descendants()) 
       }
     
     return (
     <div>
-      this one is just a silly clicky-thing. click on the dots to make it grow
+      this tree is sick. click on the browner leaves to trim them and help it grow new ones.
         <svg ref={svgRef} id="myTree">
         </svg>
       </div>

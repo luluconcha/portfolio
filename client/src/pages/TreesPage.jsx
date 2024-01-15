@@ -38,7 +38,7 @@ async function getRandomTree() {
 
          <div>
              { loading ? "loading..." : <Tree /> }
-              {randomTree && <Tree2 leaves={randomTree}/>} 
+              {randomTree && <Tree2 leaves={randomTree} setLeaves={setRandomTree}/>} 
           </div>
 
   )

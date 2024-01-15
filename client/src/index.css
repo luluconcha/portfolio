@@ -31,15 +31,17 @@ p {
   font-size: 22px;
 
 }
+
 #instructions {
   font-family: 'Perfect_DOS_VGA';
   font-size: 16px;
 }
+
 #navbar-appjsx {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: fit-content;
   z-index: 3;
   position: fixed !important;
@@ -52,7 +54,7 @@ p {
   display: block;
   /* padding-left: 70em; */
   text-align: center;
-  width: 100%;
+  width: 100vw;
   justify-content: right;
   font-family: 'wwDigital';
   font-size: 14px;
@@ -102,14 +104,39 @@ p {
 
 #homepage {
   padding-top: 20em;
+  /* padding-left: 3em; */
+  text-align: right;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.text-homepage {
+  grid-column: 1 / 3;
+  padding-right: 30px;
+}
+
+#text-homepage {
+  font-family: 'Perfect_DOS_VGA';
+  font-size: 1.5vmin; 
+}
+.picture-homepage {
+  padding: 0px;
+  margin: 0px;
+}
+.header-photo {
+  max-width: 25vw;
+  border-radius: 24px;
+  padding: 10px;
+  border-style: dashed;
 }
 
 .element {
-  min-height: 1048px;
+  min-height: 150vw;
 }
+
 .cv-page {
-  margin-bottom: 300px;
+  /* margin-bottom: 75vw;; */
 }
+
 .cv-grid-page {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -163,18 +190,69 @@ p {
   border: none;
   color: #dcff6bde;
 }
+.contact-page{
+  border-radius: 20px;
+  border-style: dashed;
+  padding: 20px;
+}
+.contact-intro {
+ /* display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 10px;
+ grid-auto-rows: minmax(100px, auto); */
+ font-family: 'wwDigital';
+}
+
+.instruction-contact {
+  grid-row: 1;
+  font-family: 'Jupiteroid-Light';
+  font-size: 1.5vw;
+}
+
+
+.contact-input {
+  grid-column: 2 / 3;
+  background-color: black;
+  border-color: #dcff6bde;
+  border-width: 1px;
+  border-radius: 10px;
+  margin: 5px;
+  color: white;
+  font-family: 'CQ_Mono';
+  font-size: 1.5vw;
+}
+
+.contact-input:focus {
+  background-color: black;
+  color: white;
+  border-style: dashed;
+  font-family: 'CQ_Mono';
+  font-size: 1.5vw;
+}
+
+
+#email_field{
+  min-width: 200px;
+  height: 24px;
+}
+
+#subject_field {
+  min-width: 200px;
+  height: 24px;
+}
 
 .send-email-button {
   font-family: 'wwDigital';
-  font-size: 22px;
-  border: 10px dashed #dcff6bde;;
+  font-size: 30px;
   color: #dcff6bde;
   background-color: black;
-  border-color: #dcff6bde;
-  border-width: 2px;
-  border-radius: 12px;
+  border: none;
   height: 50px;
   width: 100px;
+}
+
+.send-email-button:hover {
+  text-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
 }
 
 @font-face {

@@ -24,38 +24,59 @@ export default function Contact() {
 
     return (
     <div className='contact-page'>
-<p>let's get in touch! I'd love to collaborate on something, or maybe, work for you. send me an email! </p>
+<p className="contact-intro">let's get in touch!
+I'd love to collaborate on something, find out about work opportunities, or just chat :) </p>
 <form onSubmit={handleSubmit}>
+  <div> 
           <div className='instruction-contact'>
             <label htmlFor='email_field'>
-              from:
-                <p id="instructions"> (your email address) </p>
-             <input type="text" id="email_field" className='contact-form' value={email} onChange={(e) => setEmail(e.target.value)} required={true} />
+              from: {" "}
+             <input type="text"
+             id="email_field"
+             className='contact-input'
+             value={email}
+             onChange={(e) => setEmail(e.target.value)}
+             onClick={() => setMessage("enter your email address")}
+             required={true}/>
           </label>
           </div>
   
           <div className='instruction-contact'>
           <label htmlFor='subject_field'>
-            subject
-              <p id="instructions"> (optional) </p>
-              <input type="text" id="subject_field" className='contact-form' value={title} onChange={(e) => setTitle(e.target.value)} />
+            about: {" "}
+              <input type="text"
+              id="subject_field"
+              className='contact-input'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onClick={() => setMessage("you know, a subject line")}/>
            </label>
           </div>
 
+        <div className='instruction-contact'>
           <label htmlFor='textarea_field'>
-            Content:
-              <p id="instructions"> (it's your turn to talk now) </p>
-              <textarea id='textarea_field' className='contact-form' row="14" cols="50" value={content} onChange={(e) => setContent(e.target.value)} required={true}/>
+            <br />
+              <textarea id='textarea_field'
+              className='contact-input'
+              value={content}
+              rows="20"
+              cols="50"
+              onChange={(e) => setContent(e.target.value)}
+              onClick={() => setMessage("it's your turn to talk!")}
+              required={true}/>
           </label>
-        
+        </div>
           <br /><br />
           <button type="submit" className='send-email-button'>SEND</button> <br />
           <p id="instructions">
-          {message ? message : "if all goes well, this mail will be sent from your account through nodemailer"}
+          {message && message}
           </p>
 
         <p id="instructions"> </p>
+        </div>
         </form>
+        
     </div>
+    
   )
 }
