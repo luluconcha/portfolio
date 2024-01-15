@@ -9,7 +9,7 @@ export default function Tree({leaves, setLeaves}) {
     const cx = width * 0.5; // adjust as needed to fit
     const cy = height * 0.5; // adjust as needed to fit
    // const radius = Math.min(width, height) / 3 - 40;
-    const [count, setCount] = useState(2)
+    const [count, setCount] = useState(27)
 
     // const [leaves, setLeaves] = useState();
     const [loading, setLoading] = useState(false);
@@ -28,29 +28,31 @@ export default function Tree({leaves, setLeaves}) {
 
         const hierarchy = d3.hierarchy(root);
 
-        const tree = d3
-            .cluster()
+        const tree = d3.tree()
             .size([2 * Math.PI, Math.min(1640, 1640) / 2 - 56])
-            .separation((a, b) => (a.parent === b.parent ? 1 : 1) / a.depth)
+            .separation((a, b) => (a.parent === b.parent ? 20 : 56) / a.depth)
             (hierarchy);
 
         drawTree(tree)
     }
 
 
-    function deleteLeaf(node) {
-      const sickLeaf = leaves.find((l) => l.id === node.id)
-      
-      setLeaves(leaves.filter((l) => l !== sickLeaf.children && l !== sickLeaf))
+    function deleteLeaf(parentNode) {
+
+      console.log()
+        // const sickLeaf = leaves.find((l) => l.id === +parentNode.target.__data__.data.id)
+        
+        // setLeaves(leaves.filter((l) => l !== sickLeaf.children && l !== sickLeaf))
       
     }
 
     function addLeaf(parentNode) {
       console.log(parentNode)
-        // setCount(count+1)
-        // const leaf = {parentId : parentNode.id, id: count, children: undefined}
-        // updateChildren(leaf)
-        // setLeaves([...leaves, leaf])
+        setCount(count+1)
+        +parentNode.target.__data__.data.data.parentId === null ? console.log("this is the root node") : console.log("this is fine")
+        const leaf = {parentId : +parentNode.target.__data__.data.id, id: count, children: undefined}
+        updateChildren(leaf)
+        setLeaves([...leaves, leaf])
     }
     
     function updateChildren(newNode) {
@@ -73,7 +75,7 @@ export default function Tree({leaves, setLeaves}) {
           .append("g")
           .attr("fill", "none")
           .attr("stroke-opacity", 1)
-          .attr("stroke-dasharray", 12)
+          // .attr("stroke-dasharray", 12)
           .style("stroke-linecap", "round") 
           .selectAll()
           .data(root.links())
@@ -85,10 +87,10 @@ export default function Tree({leaves, setLeaves}) {
               .angle((d) => d.x)
               .radius((d) => d.y)
           )
-          .attr("stroke", "#e03616")
-          .attr("stroke-width",  4)
+          .attr("stroke", "#26532B")
+          .attr("stroke-width",  10)
         
-          
+        // d.target.__data__.data.data.sick === 1 ? "#FFBC0A" : d.target.__data__.data.data.sick === 2 ? "#FC2F00": "#399E5A"  
           
         svg
           .append("g")
@@ -99,9 +101,9 @@ export default function Tree({leaves, setLeaves}) {
             "transform",
             (d) => `rotate(${(d.x * 180) / Math.PI - 90}) translate(${d.y},0)`
           )
-          .attr("fill", "#e03616")
-          .attr("r", 7)
-          .on("click", (d) => addLeaf(d));
+          .attr("fill", (d) => d.data.data.sick === 2 ? "#FC2F00" : d.data.data.sick === 1 ? "#FFBC0A" : "#399E5A" )
+          .attr("r", 17)
+          .on("click", (d) => d.target.__data__.data.data.parentId ? addLeaf(d) : console.log("root node"));
 
         console.log(root.descendants()) 
       }
