@@ -24,8 +24,12 @@ export default function Contact() {
 
     return (
     <div className='contact-page'>
-<p className="contact-intro">let's get in touch!
-I'd love to collaborate on something, find out about work opportunities, or just chat :) </p>
+<p className="contact-intro"> want to collaborate on something? <br />
+got a job offer for me? <br />
+found a bug? <br />
+wanna chat? <br />
+let's talk about it!
+</p>
 <form onSubmit={handleSubmit}>
   <div> 
           <div className='instruction-contact'>
@@ -67,12 +71,13 @@ I'd love to collaborate on something, find out about work opportunities, or just
           </label>
         </div>
           <br /><br />
+          <p id="instructions"> {message && message} </p>
           <button type="submit" className='send-email-button'>SEND</button> <br />
           <p id="instructions">
-          {message && message}
+          
           </p>
 
-        <p id="instructions"> </p>
+        
         </div>
         </form>
         

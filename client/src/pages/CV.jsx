@@ -58,12 +58,12 @@ function setHighlight(e, id) {
          
             {wait ? "wait..." 
               : data && data.map((d, i) => {
-                return ( <div>
+                return ( <div key={d.id}>
                 <div className="cv-grid-page">
-                          <div className="cv-date-column" key={d.id}>
+                          <div className="cv-date-column" >
                             {d.date}
                           </div>
-                          <div className="cv-title-column" key={d.id * 0.7} onMouseOver={(e) => setHighlight(e, d.id)}>
+                          <div className="cv-title-column"  onMouseOver={(e) => setHighlight(e, d.id)}>
                                   {/* <CVElement data={data} id={d.id} setHighlight={setHighlight}/> */}
                                   
                                   {d.title}<br />
