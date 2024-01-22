@@ -32,7 +32,7 @@ const getRandomTree = useCallback(async () => {
          <div>
              { loading ? "loading..." : <Tree /> }
              <div className="second-tree">
-             {randomTree && <Tree2 leaves={randomTree} setLeaves={setRandomTree} setMessage={setMessage} baseNum={numOfNodesForSecondTree}/>}
+             {/* {randomTree && <Tree2 leaves={randomTree} setLeaves={setRandomTree} setMessage={setMessage} baseNum={numOfNodesForSecondTree}/>} */}
              <p id="instructions">{message && message}</p>
               </div> 
           </div>

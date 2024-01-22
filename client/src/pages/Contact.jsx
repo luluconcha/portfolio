@@ -27,8 +27,8 @@ export default function Contact() {
 <p className="contact-intro"> want to collaborate on something? <br />
 got a job offer for me? <br />
 found a bug? <br />
-wanna chat? <br />
-let's talk about it!
+<br />
+let's talk!
 </p>
 <form onSubmit={handleSubmit}>
   <div> 

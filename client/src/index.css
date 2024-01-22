@@ -1,6 +1,4 @@
 :root {
-  color: #dcff6bde;
-  background-color: black;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,9 +12,11 @@
 } */
 
 body {
+  color: #dcff6bde !important;
+  background-color: black !important;
   font-family: 'wwDigital';
   font-size: 24px;
-  padding-right:20%;
+  padding-right: 20%;
   padding-left: 20%;
   text-align: center;
   margin: 0;
@@ -134,7 +134,7 @@ p {
 }
 
 .cv-page {
-  /* margin-bottom: 75vw;; */
+  /* margin-bottom: 75vw; */
 }
 
 .cv-grid-page {
@@ -163,7 +163,6 @@ p {
   font-family: 'Perfect_DOS_VGA';
   font-size: 8px;
   line-height: 75%;
-  
 }
 
 .highlighted-skill {
@@ -205,6 +204,7 @@ p {
 
 .instruction-contact {
   grid-row: 1;
+  grid-column: 1;
   font-family: 'Jupiteroid-Light';
   font-size: 1.5vw;
 }
@@ -255,6 +255,41 @@ p {
   text-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
 }
 
+/* .projects-section {
+  grid-template-columns: repeat(auto, 1fr);
+  grid-template-rows: minmax(2, auto);
+} */
+.projects-cards {
+  background: none;
+}
+
+.projects-row {
+  gap: 6em;
+}
+#projects-img {
+  /* max-width: 10em;
+  max-height: 8em; */
+  object-fit: scale-down !important;
+  border-radius: 12px;
+}
+
+#projects-img:hover {
+  box-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
+}
+.projects-button {
+  background-color: black;
+  color: #dcff6bde;
+  border: none
+}
+#projects-modal {
+  background-color: black !important;
+  color: #dcff6bde;
+  border: none;
+}
+
+#crystalball-video {
+  width: inherit;
+}
 @font-face {
   font-family: 'BusMatrixCondensed';
   src: local('BusMatrixCondensed'), url(./fonts/BusMatrixCondensed.ttf) format('truetype');

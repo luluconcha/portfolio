@@ -16,8 +16,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var indexRouter = require('./routes/index');
 var treesRouter = require('./routes/trees');
+var projectsRouter = require('./routes/projects');
 app.use('/api/index', indexRouter);
 app.use('/api/trees', treesRouter);
+app.use('/api/projects', projectsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

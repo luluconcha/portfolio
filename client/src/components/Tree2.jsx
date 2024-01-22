@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import * as d3 from "d3";
-import axios from 'axios'
+
 
 export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
     const svgRef = useRef();
     const width = 1048;
     const height = width;
-    const cx = width * 0.5; // adjust as needed to fit
-    const cy = height * 0.5; // adjust as needed to fit
+    const cx = width / 2;
+    const cy = height / 2; 
    // const radius = Math.min(width, height) / 3 - 40;
     const [leafCount, setLeafCount] = useState(baseNum)
     const [barometro, setBarometro] = useState()
     const [rootKilled, setRootKilled] = useState(false)
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState()
+
     
 
     useEffect(() => {
@@ -32,7 +31,7 @@ export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
 
         const tree = d3.tree()
           .size([2 * Math.PI, Math.min(968, 968) / 2 - 56])
-          .separation((a, b) => (a.parent === b.parent ? 20 * barometro : 56 * barometro))
+          .separation((a, b) => (a.parent === b.parent ? 20 : 56))
           (hierarchy);
 
         drawTree(tree)
@@ -50,6 +49,7 @@ export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
         await deleteLeaf(node)
         // await addLeaf()
         // await addLeaf()
+        makeSomeLeavesSick(3)
       } else if (!node.parentId) {
         setRootKilled(true)
         setMessage("refresh to start over")    
@@ -62,7 +62,7 @@ export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
 async function deleteLeaf(node) {
   try {
     setLeaves(leaves.filter((l) => l.id !== node.id))
-    // await updateChildren("delete", node)
+    await updateChildren("delete", node)
   } catch (err) {
     setMessage("error while deleting leaf: " + err.message)
   }
@@ -76,8 +76,6 @@ async function makeSomeLeavesSick(num) {
         : leaf
     }))
   // }, 500 / barometro);
-
-
 }
 
 function sickLeavesLeft(){
@@ -96,7 +94,7 @@ async function addLeaf() {
     setLeafCount(leafCount + 1)
     const randomParentNode = await leaves.filter((leaf) => !leaf.sick)?.[Math.floor(Math.random() * (leaves.length - 1))]
     if (randomParentNode) {
-      const leaf = {parentId : randomParentNode.id, id: leafCount, sick: false, children: undefined}
+      const leaf = {parentId : randomParentNode.id, id: leafCount, sick: false, children: []}
       await updateChildren("add", leaf)
       setLeaves([...leaves, leaf])
       setMessage("a new leaf grew!")
@@ -114,11 +112,11 @@ async function updateChildren(action, node) {
   if (action === "delete") {
     const parentNode = leaves.find((leaf) => leaf.id === node.parentId)
     const updatedChildren = parentNode.children.filter((child) => child.id !== node.id)
-    setLeaves(leaves.map((leaf) => {
+    return leaves.map((leaf) => {
       return leaf.id === parentNode.id
       ? {...leaf, children: updatedChildren}
       : leaf
-    }))
+    })
     // parentNode.parentId && updateChildren("delete", parentNode) 
   } else if (action === "add") {
   return leaves.map((leaf) => {
@@ -155,9 +153,9 @@ async function updateChildren(action, node) {
           )
           .attr("stroke", "#8A9B68")
           .attr("stroke-width",  7 + (barometro * 3))
-          .transition()
+          // .transition()
         
-        // d.target.__data__.data.data.sick === 1 ? "#FFBC0A" : d.target.__data__.data.data.sick === 2 ? "#FC2F00": "#399E5A"  
+  
           
         svg
           .append("g")

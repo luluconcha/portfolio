@@ -19,7 +19,8 @@ export default function NavBar() {
      
     <div className="headingNav"> 
       <h1 className="page-header"> {header}</h1>
-        <Link className="nav-item"
+      
+      <Link className="nav-item"
           activeClass="active"
           to="projects"
           spy={true}
@@ -29,6 +30,18 @@ export default function NavBar() {
           onSetActive={handleSetActive}
           duration={500}>
             <button type="button">projects</button>
+        </Link>
+
+        <Link className="nav-item"
+          activeClass="active"
+          to="demo"
+          spy={true}
+          smooth={true}
+          isDynamic={true}
+          offset={-700}
+          onSetActive={handleSetActive}
+          duration={500}>
+            <button type="button">demo</button>
         </Link>
 
         <Link className="nav-item"

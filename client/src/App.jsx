@@ -5,12 +5,12 @@ import { Link, Button, Events, Element, animateScroll as scroll, scrollSpy } fro
 import NavBar from './components/NavBar'
 import TreesPage from './pages/TreesPage'
 import CV from './pages/CV'
-import CVElement from './components/CVElement';
-import ScrapingDemo from './components/ScrapingDemo';
 import Homepage from './pages/Homepage';
 import Contact from './pages/Contact';
 
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Projects from './components/Projects';
 
 
 function App() {
@@ -45,9 +45,10 @@ function App() {
       </header>
            
         <Element name="homepage" className="element"> <Homepage /> </Element>
-          <Element name="projects" className="element"> <TreesPage /> </Element>
-            <Element name="cv" className="element"><CV/></Element>
-              <Element name="contact" className="element"><Contact/></Element>
+          <Element name="projects" className="element"> <Projects /> </Element>
+            <Element name="demo" className="element"> <TreesPage /> </Element>
+              <Element name="cv" className="element"><CV/></Element>
+                <Element name="contact" className="element"><Contact/></Element>
   
   </>
   )
