@@ -269,11 +269,16 @@ p {
 #projects-img {
   /* max-width: 10em;
   max-height: 8em; */
-  object-fit: scale-down !important;
+  object-fit: contain !important;
   border-radius: 12px;
 }
-
-#projects-img:hover {
+#img-modal {
+  object-fit:fill;
+}
+#video-modal {
+  object-fit: fill;
+}
+.projects-cards:hover {
   box-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
 }
 .projects-button {

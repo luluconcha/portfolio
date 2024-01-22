@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Carousel from 'react-bootstrap/Carousel'
-
+import Image from 'react-bootstrap/Image'
 import Card from 'react-bootstrap/Card'
 
 
@@ -15,15 +15,13 @@ export default function Projects() {
   const [featured, setFeatured] = useState([])
   const [data, setData] = useState([])
   const [show, setShow] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
 
   const handleClose = () => setShow(false);
-  function handleShow(e){
-    setShow(true);
-    console.log(e)
-    console.log(data)
-    // console.log(storymap)
-
-  }
 
   async function handleClick(clickedTag) {
     setWait(true)
@@ -60,59 +58,59 @@ export default function Projects() {
 
     return (
     <div className="projects-section">
-     <Container>
-     <Row xs={2} md={4} lg={6} className="projects-row">
-        {data && data.map((e) => {
-                    if (e.first) {
-                        return <Card className="projects-cards" key={`${e.id}`} onClick={() => handleClick(e.tag)}>
-                                <Card.Img src={`${e.url}`} id="projects-img"/>
-                                <Card.Text> {e.tag}</Card.Text>    
-                        </Card>
-
-                        if (e.url.startsWith('http')) {
-                            return <Col sm value={`${e.tag}`}> 
-                                    <Card>
-                                    <iframe
-                                        id="projects-video"
-                                        src={`${e.url}`}
-                                        credentialsless={true}
-                                        frameborder="0"
-                                        allowfullscreen={false}>
-                                    </iframe>
-                                        </Card>
-                                </Col>
-                        } else {
-                            return <Col sm value={`${e.tag}`}> <Card src={`${e.url}`} id="projects-img" ></Card> </Col>
-                        }
-                    }})
-            }
-        </Row> 
-        </Container>          
+    { wait ? "wait..." : data && <Container>
+        <Row xs={2} md={4} lg={6} className="projects-row">
+            {data && data.map((e) => {
+                        if (e.first) {
+                            return <Card className="projects-cards" key={`${e.id}`} onClick={() => handleClick(e.tag)}>
+                                        <Card.Img src={`${e.url}`} id="projects-img"/>
+                                    <Card.Text> {e.tag}</Card.Text>    
+                            </Card>
+                        }})
+                }
+            </Row> 
+        </Container>}     
        
  
        <>
-       {/* <Button variant="primary" value="crystalball" onClick={handleShow} className="projects-button">
-            big button eh
-      </Button> */}
-
       <Modal show={show}
             onHide={handleClose}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            centered>
-        <Modal.Header closeButton id="projects-modal">
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
-        <Modal.Body id="projects-modal">
-         
-             {featured && featured.map((f) => f.title)}
-                </Modal.Body>
-        <Modal.Footer id="projects-modal">
-
-          <Button variant="primary" onClick={handleClose} className="projects-button">
-            close
-          </Button>
-        </Modal.Footer>
+            centered
+            interval={null}>
+        <Carousel activeIndex={index} onSelect={handleSelect}>
+            {wait ? "wait..." : featured && featured.map((f) => {
+                return <Carousel.Item key={`${f.id}`}>
+                    <Modal.Header closeButton id="projects-modal">
+                        <Modal.Title>{f.title}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body id="projects-modal">
+                        {f.type === "img" ? <Image src={`${f.url}`} alt={`${f.title}`} id="img-modal"></Image>
+                            : (f.type === "video" && f.url.startsWith('./'))
+                                ? <video controls poster='./still_feliz_cumple.png' id="video-modal">
+                                    <source src={`${f.url}`} type="video/mp4"/>
+                                </video>
+                            : (f.url.startsWith('http'))
+                                ? <iframe id="video-modal"
+                                    src={`${f.url}`}
+                                    title={`${f.title}`}
+                                    credentialsless={true}
+                                    frameborder="0"
+                                    allowfullscreen>
+                                </iframe>
+                            : "oops! something went wrong..."} 
+                    </Modal.Body>
+                    <Modal.Footer id="projects-modal">
+                    <p>{f.description}</p>
+                        <Button variant="primary" onClick={handleClose} className="projects-button">
+                            close
+                            </Button>
+                        </Modal.Footer>
+                    </Carousel.Item>
+            })} 
+        </Carousel>      
+          
       </Modal>
        </> 
     
