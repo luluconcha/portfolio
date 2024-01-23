@@ -68,8 +68,10 @@ module.exports = [
         "tag" : "storymap",
         "first" : 0,
     },
+
+
     {
-        "url" : "https://www.youtube.com/watch?v=TvmU7JxWKT8",
+        "url" : "https://www.youtube.com/embed/TvmU7JxWKT8?si=17baD1aa4Trhuav0",
         "title" : "Kingdom Vallcarca",
         "link" : 0,
         "type" : "video",
@@ -81,7 +83,7 @@ module.exports = [
 
         "url" : "./santa_jordina.jpg",
         "title" : "Graphic projects",
-        "link" : "",
+        "link" : 0,
         "type" : "img",
         "description" : "I am also interested in graphic design, and using this for social causes. This poster was made for a community library I volunteer at.",
         "tag" : "random non-tech projects",
@@ -89,9 +91,9 @@ module.exports = [
     },
     {
   
-        "url" : "./feliz_cumple2021.mov",
+        "url" : "./feliz_cumple2021.mp4",
         "title" : "\"Feliz cumpleaños\"",
-        "link" : "",
+        "link" : 0,
         "type" : "img",
         "description" : "Because I also love making stop-motion, I decided to include this labor of love made for a friend's birthday. ",
         "tag" : "random non-tech projects",

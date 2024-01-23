@@ -75,53 +75,62 @@ export default function Projects() {
        <>
       <Modal show={show}
             onHide={handleClose}
-            size="lg"
+            dialogClassName="modal-window"
             aria-labelledby="contained-modal-title-vcenter"
-            centered
-            interval={null}>
+            centered>
         <Carousel activeIndex={index} onSelect={handleSelect}>
             {wait ? "wait..." : featured && featured.map((f) => {
-                return <Carousel.Item key={`${f.id}`}>
+                return <Carousel.Item key={`${f.id}`} interval={null}>
                     <Modal.Header closeButton id="projects-modal">
                         <Modal.Title>{f.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="projects-modal">
                         {f.type === "img" ? <Image src={`${f.url}`} alt={`${f.title}`} id="img-modal"></Image>
                             : (f.type === "video" && f.url.startsWith('./'))
-                                ? <video controls poster='./still_feliz_cumple.png' id="video-modal">
-                                    <source src={`${f.url}`} type="video/mp4"/>
+                                ? <video
+                                    controls
+                                    width="100%"
+                                    poster={`${f.link}`}
+                                    id="video-modal"
+                                    title={`${f.title}`}
+                                    src={`${f.url}`}>
+                                    {/* <source src={`${f.url}`}
+                                    type="video/mp4"/> */}
+                                    <a href={`${f.url}`}></a>
+                                    It seems this video is not working, sorry!
                                 </video>
-                            : (f.url.startsWith('http'))
+                            : (f.url.includes('loom'))
                                 ? <iframe id="video-modal"
                                     src={`${f.url}`}
                                     title={`${f.title}`}
-                                    credentialsless={true}
-                                    frameborder="0"
-                                    allowfullscreen>
+                                    width="100%"
+                                    frameBorder="0"
+                                    muted
+                                    allowFullScreen>
                                 </iframe>
+                            : (f.url.includes('youtube'))
+                                ? <iframe
+                                    src={`${f.url}`}
+                                    title={`${f.title}`}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen>
+                                </iframe>
+
                             : "oops! something went wrong..."} 
                     </Modal.Body>
                     <Modal.Footer id="projects-modal">
-                    <p>{f.description}</p>
+                    <p id="modal-footer">{f.description}</p><br />
+                    {f.link && <p id="modal-footer-link"></p>}
                         <Button variant="primary" onClick={handleClose} className="projects-button">
                             close
                             </Button>
                         </Modal.Footer>
                     </Carousel.Item>
-            })} 
+            })}
         </Carousel>      
-          
-      </Modal>
+        </Modal>
        </> 
-    
-        {/* <iframe  id="crystalball-video"
-            src="https://www.loom.com/embed/5bd31f44d95e4c1f9c470a1ed8700f34?sid=6f58399b-f597-4789-9a91-8beb0d1d00a5"
-            credentialsless={true}
-            frameborder="0" allowfullscreen={false}>
-    
-        </iframe> */}
-        
-    
     </div>
   )
 }

@@ -19,6 +19,7 @@ body {
   padding-right: 20%;
   padding-left: 20%;
   text-align: center;
+  justify-content: center;
   margin: 0;
   display: flex;
   /* place-items: center; */
@@ -265,6 +266,8 @@ p {
 
 .projects-row {
   gap: 6em;
+  align-content: center;
+  justify-content: center;
 }
 #projects-img {
   /* max-width: 10em;
@@ -273,11 +276,18 @@ p {
   border-radius: 12px;
 }
 #img-modal {
-  object-fit:fill;
+  object-fit: contain;
 }
 #video-modal {
-  object-fit: fill;
+  min-height:50vw;
 }
+
+.modal-window {
+ /* width: 90vw; */
+ min-width: 90vw;
+ min-height: 90vw;
+}
+
 .projects-cards:hover {
   box-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
 }
