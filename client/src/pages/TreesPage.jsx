@@ -4,6 +4,7 @@ import Tree2 from '../components/Tree2'
 import axios from 'axios'
 import { useEffect, useState, useCallback } from 'react'
 import Tree3 from '../components/Tree3'
+import Tree2Testing from '../components/Tree2Testing'
 
 export default function TreesPage() {
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,7 @@ const getThirdTree = useCallback(async () => {
               {loading ? "loading..." : thirdTree && <Tree3 leaves={thirdTree} setLeaves={setThirdTree} baseNum={nodesForThirdTree}/>}
             </div>
             <div className="second-tree">
-              {loading ? "loading..." : secondTree && <Tree2 leaves={secondTree} setLeaves={setSecondTree} baseNum={nodesForSecondTree}/>}          
+              {loading ? "loading..." : secondTree && <Tree2Testing leaves={secondTree} setLeaves={setSecondTree} baseNum={nodesForSecondTree}/>}          
             </div>
            
 

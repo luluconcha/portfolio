@@ -53,26 +53,16 @@ export default function Tree3({leaves, setLeaves, baseNum}) {
     }
    }
 function changeBlueNode() {
-  console.log("we're in the change section")
   const randomNum = Math.floor(Math.random() * leaves.length)
-  setLeaves(leaves.map((leaf) => {
-      if (leaf.blue) {
-        return {...leaf, blue: false} 
-      } else if (leaf.id === randomNum) {
-        return {...leaf, blue: true}
-      } else {
-        return leaf
-      }
-    }))
-
+  setLeaves(leaves.map((leaf) => leaf.blue ? {...leaf, blue: false} : leaf.id === randomNum ? {...leaf, blue: true} : leaf))
 }
     async function addLeaf(event, node) {
         console.log("d : " + node)
        try {
         setCount(count+1)
-        const leaf = {parentId : +event.target.__data__.data.id, id: count, children: []}
-        updateChildren(leaf)
-        setLeaves([...leaves, leaf])
+        const newLeaf = {parentId : +event.target.__data__.data.id, id: count, children: []}
+        updateChildren(newLeaf)
+        setLeaves([...leaves, newLeaf])
        } catch (err) {
         setMessage(err.message)
        }

@@ -5,9 +5,10 @@ import * as d3 from "d3";
 export default function Tree({leaves, setLeaves, baseNum}) {
     const svgRef = useRef();
     const width = 1048;
-    const height = width;
-    const cx = width / 2;
-    const cy = height / 2; 
+    const [height, setHeight] = useState(width);
+    // const cx = width / 2;
+    // const cy = height / 2; 
+    const padding = 1
    // const radius = Math.min(width, height) / 3 - 40;
     const [leafCount, setLeafCount] = useState(baseNum)
     const [barometro, setBarometro] = useState()
@@ -23,19 +24,18 @@ export default function Tree({leaves, setLeaves, baseNum}) {
 
     function createTree() {
       
-        const root = d3
+        const data = d3
             .stratify()
             .id((d) => d.id)
             .parentId((d) => d.parentId)(leaves);
 
-        const hierarchy = d3.hierarchy(root);
+        const root = d3.hierarchy(data);
 
-        const tree = d3.tree()
-          .size([2 * Math.PI, Math.min(968, 968) / 2 - 56])
-          .separation((a, b) => (a.parent === b.parent ? 20 : 56))
-          (hierarchy);
-
-        drawTree(tree)
+        // const tree = d3.tree()
+        //   .size([2 * Math.PI, Math.min(968, 968) / 2 - 56])
+        //   .separation((a, b) => (a.parent === b.parent ? 20 : 56))
+        //   (hierarchy);
+        drawTree(root)
     }
 
    async function handleGameLogic(node) {
@@ -126,12 +126,26 @@ async function updateChildren(action, node) {
 
     function drawTree(root) {
       const ease = d3.easeElastic.period(0.5);
+      const dx = 10;
+      const dy = width / (root.height + padding);
+      d3.tree().nodeSize([dx, dy])(root);
+    
+      // Center the tree.
+      let x0 = Infinity;
+      let x1 = -x0;
+      root.each(d => {
+        if (d.y > x1) x1 = d.y;
+        if (d.y < x0) x0 = d.y;
+      });
+    
+      // Compute the default height.
+      // if (height === undefined) setHeight(x1 - x0 + dx * 2)
 
         const svg = d3
           .select(svgRef.current)
           .attr("width", width)
           .attr("height", height)
-          .attr("viewBox", [-cx, -cy, width, height])
+          .attr("viewBox", [-dy * padding / 2, x0 - dy, width, height])
           .attr("style", "width: 100%; height: auto; font: 10px sans-serif;");
 
         svg.selectAll("*").remove();
@@ -145,12 +159,16 @@ async function updateChildren(action, node) {
           .selectAll()
           .data(root.links())         
           .join("path")
-          .attr(
-            "d",
-            d3.linkRadial()
-              .angle((d) => d.x)
-              .radius((d) => d.y)
-          )
+          // .attr(
+          //   "d",
+          //   d3.linkRadial()
+          //     .angle((d) => d.x)
+          //     .radius((d) => d.y)
+          // )
+          .join("path")
+          .attr("d", d3.linkVertical(d3.curveBumpX)
+              .y(d => d.y)
+              .x(d => d.x))
           .attr("stroke", "#8A9B68")
           .attr("stroke-width",  7 + (barometro * 3))
           // .transition()
@@ -159,18 +177,25 @@ async function updateChildren(action, node) {
           
         svg
           .append("g")
-          .selectAll()
-          .data(root.descendants())
-    
-          .join("circle")
-          .attr(
-            "transform",
-            (d) => `rotate(${((d.x * 180) / Math.PI - 90)}) translate(${d.y},0)`
-          )
-          .attr("fill", (d) => d.data.data.sick ? "#FFBC0A" : "#3F784C" )
-          .attr("r", 7 + (barometro * 10))
-          .on("click", (d) => {handleGameLogic(d.target.__data__.data.data)})
+          // .selectAll()
+          // .data(root.descendants())
+          // .join("circle")
+          // .attr(
+          //   "transform",
+          //   (d) => `rotate(${((d.x * 180) / Math.PI - 90)}) translate(${d.y},0)`
+          // )
+          // .attr("fill", (d) => d.data.data.sick ? "#FFBC0A" : "#3F784C" )
+          // .attr("r", 7 + (barometro * 10))
+          // .on("click", (d) => {handleGameLogic(d.target.__data__.data.data)})
           // .on("click", (d) => addLeaves())
+          .selectAll("a")
+          .data(root.descendants())
+          .join("a")
+            // .attr("xlink:href", link == null ? null : d => link(d.data, d))
+            // .attr("target", link == null ? null : linkTarget)
+            .attr("transform", d => `translate(${d.y},${d.x})`);
+
+
 
         // console.log(root.descendants()) 
       }
