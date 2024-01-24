@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-export default function Tree3() {
+export default function Tree3({leaves, setLeaves, baseNum}) {
     const svgRef = useRef();
     const width = 1640;
     const height = width;
@@ -9,8 +9,9 @@ export default function Tree3() {
     const cy = height * 0.5; // adjust as needed to fit
    // const radius = Math.min(width, height) / 3 - 40;
     const [count, setCount] = useState(2)
-    const [leaves, setLeaves] = useState([{ parentId : undefined, id: 1, children: undefined}]);
-    
+    const [message, setMessage] = useState('')
+    const [blueOne, setBlueOne] = useState(leaves.find((l) => l.blue)) 
+
     useEffect(() => {
     createTree();
     }, [leaves])
@@ -34,12 +35,47 @@ export default function Tree3() {
         drawTree(tree)
     }
     
-    function addLeaf(event, node) {
+
+   async function handleGameLogic(node) {
+    console.log("clicked node")
+    console.log(node)
+
+    
+    setMessage("")
+
+    try {
+      setMessage("welp")
+    console.log(blueOne)
+    changeBlueNode()
+    console.log(blueOne)
+    } catch (err) {
+      setMessage("error handling game logic: " + err.message)
+    }
+   }
+function changeBlueNode() {
+  console.log("we're in the change section")
+  const randomNum = Math.floor(Math.random() * leaves.length)
+  setLeaves(leaves.map((leaf) => {
+      if (leaf.blue) {
+        return {...leaf, blue: false} 
+      } else if (leaf.id === randomNum) {
+        return {...leaf, blue: true}
+      } else {
+        return leaf
+      }
+    }))
+
+}
+    async function addLeaf(event, node) {
         console.log("d : " + node)
+       try {
         setCount(count+1)
-        const leaf = {parentId : +event.target.__data__.data.id, id: count, children: undefined}
+        const leaf = {parentId : +event.target.__data__.data.id, id: count, children: []}
         updateChildren(leaf)
         setLeaves([...leaves, leaf])
+       } catch (err) {
+        setMessage(err.message)
+       }
     }
     
     function updateChildren(newNode) {
@@ -74,8 +110,8 @@ export default function Tree3() {
               .angle((d) => d.x)
               .radius((d) => d.y)
           )
-          .attr("stroke", "#e03616")
-          .attr("stroke-width",  4)
+          .attr("stroke", "#F8C537")
+          .attr("stroke-width",  7)
         
           
           
@@ -88,18 +124,20 @@ export default function Tree3() {
             "transform",
             (d) => `rotate(${(d.x * 180) / Math.PI - 90}) translate(${d.y},0)`
           )
-          .attr("fill", "#e03616")
-          .attr("r", 7)
-          .on("click", (e, d) => addLeaf(e, d));
+          .attr("fill", (d) => d.data.data.blue ? "#724CF9" : "#F8C537 ")
+          .attr("r", 11)
+          .on("click", (d) => {handleGameLogic(d.target.__data__.data.data)})
 
         console.log(root.descendants()) 
       }
     
     return (
     <div>
-      this one is just a silly clicky-thing. click on the dots to make it grow
+      welcome to the tree of chaos. may the gods be with you
         <svg ref={svgRef} id="myTree">
+          
         </svg>
+        {message && message}
       </div>
   )
 }

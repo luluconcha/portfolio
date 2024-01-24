@@ -280,12 +280,13 @@ p {
 }
 #video-modal {
   min-height:50vw;
+  max-width: 60vw;
 }
 
 .modal-window {
  /* width: 90vw; */
- min-width: 90vw;
- min-height: 90vw;
+ max-width: 80vw;
+ max-height: 80vw;
 }
 
 .projects-cards:hover {

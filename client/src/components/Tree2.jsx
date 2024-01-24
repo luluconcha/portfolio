@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import * as d3 from "d3";
 
 
-export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
+export default function Tree({leaves, setLeaves, baseNum}) {
     const svgRef = useRef();
     const width = 1048;
     const height = width;
@@ -12,6 +12,7 @@ export default function Tree({leaves, setLeaves, setMessage, baseNum}) {
     const [leafCount, setLeafCount] = useState(baseNum)
     const [barometro, setBarometro] = useState()
     const [rootKilled, setRootKilled] = useState(false)
+    const [message, setMessage] = useState('')
 
     
 
@@ -177,10 +178,9 @@ async function updateChildren(action, node) {
     
     return (
     <div className="tree2-section">
-      this tree is sick. <br />
-      click on yellow leaves to trim them! <br />
-      
+      cacaboudin
         {rootKilled && <h1> oops! you pulled out the root</h1> || <svg ref={svgRef} id="myTree">
+        <p id="instructions">{message && message}</p>
         </svg>}
       </div>
   )

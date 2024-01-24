@@ -1,7 +1,6 @@
 module.exports = [
 
     {
-
         "url" : "./data_schema.png",
         "title" : "data schema",
         "type" : "img",
@@ -11,7 +10,6 @@ module.exports = [
         "first" : 1,
     },
     {
-
         "url" : "https://www.loom.com/embed/5bd31f44d95e4c1f9c470a1ed8700f34?sid=6f58399b-f597-4789-9a91-8beb0d1d00a5",
         "title" : "Crystalball demo",
         "type" : "video",
@@ -21,7 +19,6 @@ module.exports = [
         "first" : 0,
     },
     {
-
         "url" : "./estherdelbrio.png",
         "title" : "\"Sent from my iPhone\"",
         "type" : "img",
@@ -31,7 +28,6 @@ module.exports = [
         "first" : 0,
     },
     {
-
         "url" : "./storymapping_userflow.png",
         "title" : "Storymap UX flow",
         "link" : "https://github.com/luluconcha/storymapping",
@@ -41,7 +37,6 @@ module.exports = [
         "first" : 0,
     },
     {
-
         "url" : "./cotton_candy_land.png",
         "title" : "Cotton Candy Land",
         "type" : "img",
@@ -68,8 +63,6 @@ module.exports = [
         "tag" : "storymap",
         "first" : 0,
     },
-
-
     {
         "url" : "https://www.youtube.com/embed/TvmU7JxWKT8?si=17baD1aa4Trhuav0",
         "title" : "Kingdom Vallcarca",
@@ -80,7 +73,6 @@ module.exports = [
         "first" : 0,
     },
     {
-
         "url" : "./santa_jordina.jpg",
         "title" : "Graphic projects",
         "link" : 0,
@@ -90,11 +82,10 @@ module.exports = [
         "first" : 1,
     },
     {
-  
         "url" : "./feliz_cumple2021.mp4",
         "title" : "\"Feliz cumpleaños\"",
         "link" : 0,
-        "type" : "img",
+        "type" : "video",
         "description" : "Because I also love making stop-motion, I decided to include this labor of love made for a friend's birthday. ",
         "tag" : "random non-tech projects",
         "first" : 0,
