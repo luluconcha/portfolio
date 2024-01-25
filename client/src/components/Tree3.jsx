@@ -8,12 +8,14 @@ export default function Tree3({leaves, setLeaves, baseNum}) {
     const cx = width * 0.5; // adjust as needed to fit
     const cy = height * 0.5; // adjust as needed to fit
    // const radius = Math.min(width, height) / 3 - 40;
-    const [count, setCount] = useState(2)
+    const [count, setCount] = useState(baseNum)
     const [message, setMessage] = useState('')
-    const [blueOne, setBlueOne] = useState(leaves.find((l) => l.blue)) 
+    const [blueOne, setBlueOne] = useState(leaves.find((l) => l.blue))
+    let intervalNum; 
 
     useEffect(() => {
     createTree();
+
     }, [leaves])
 
     function createTree() {
@@ -36,31 +38,40 @@ export default function Tree3({leaves, setLeaves, baseNum}) {
     }
     
 
-   async function handleGameLogic(node) {
-    console.log("clicked node")
-    console.log(node)
-
-    
+   async function handleClick(node) {
     setMessage("")
-
     try {
-      setMessage("welp")
-    console.log(blueOne)
-    changeBlueNode()
-    console.log(blueOne)
+      if (node.blue) {
+        setMessage("welp")
+        console.log(blueOne)
+        if (!intervalNum) changeBlueNode()
+      } else if (!node.blue) {
+        addLeaf(node)
+      }
+      console.log(blueOne)
     } catch (err) {
       setMessage("error handling game logic: " + err.message)
     }
    }
+
+  function stop(){
+    clearInterval(intervalNum)
+    intervalNum = null;
+  }
 function changeBlueNode() {
-  const randomNum = Math.floor(Math.random() * leaves.length)
-  setLeaves(leaves.map((leaf) => leaf.blue ? {...leaf, blue: false} : leaf.id === randomNum ? {...leaf, blue: true} : leaf))
+  setInterval(() => {
+    const randomNum = Math.floor(Math.random() * leaves.length)
+    setLeaves(leaves.map((leaf) => leaf.blue ? {...leaf, blue: false} : leaf.id === randomNum ? {...leaf, blue: true} : leaf))
+  }, 2000)
+  
+  
+
 }
-    async function addLeaf(event, node) {
+    async function addLeaf(node) {
         console.log("d : " + node)
        try {
         setCount(count+1)
-        const newLeaf = {parentId : +event.target.__data__.data.id, id: count, children: []}
+        const newLeaf = {parentId : node.id, id: count, children: []}
         updateChildren(newLeaf)
         setLeaves([...leaves, newLeaf])
        } catch (err) {
@@ -116,7 +127,7 @@ function changeBlueNode() {
           )
           .attr("fill", (d) => d.data.data.blue ? "#724CF9" : "#F8C537 ")
           .attr("r", 11)
-          .on("click", (d) => {handleGameLogic(d.target.__data__.data.data)})
+          .on("click", (d) => {handleClick(d.target.__data__.data.data)})
 
         console.log(root.descendants()) 
       }
@@ -128,6 +139,7 @@ function changeBlueNode() {
           
         </svg>
         {message && message}
+        <button onClick={stop}> stop </button>
       </div>
   )
 }

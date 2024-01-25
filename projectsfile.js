@@ -43,7 +43,7 @@ module.exports = [
         "link" : "https://github.com/luluconcha/mvp_extended/blob/master/routes/storypoints.js",
         "description" : "First iteration of the final Storymap project; the bootcamp's second project was a feature extension on someone else's project. My colleague's project was a SPA to create character sheets; I decided to extend this by creating a tree-like Sequelize database where users could contribute to a collective choose-your-own-adventure kind of story. Given the 4 days deadline for this project, I did not get around to tying the characters to the storypoints --but for the last 3-week group project, we decided to create a full-fleshed, actually playable version of this.",
         "tag" : "storymap",
-        "first" : 1,
+        "first" : 0,
     },
     {
         "url" : "./storymapping_database.png",
@@ -52,7 +52,7 @@ module.exports = [
         "link" : 0,
         "description" : "Storymap project database demonstrating the links between a user's characters, abilities, and items, and the visited or created Storypoints and the challenges they may contain.",
         "tag" : "storymap",
-        "first" : 0,
+        "first" : 1,
     },
     {
         "url" : "https://www.loom.com/embed/effeb1d975614df986e746f76bd85f4f?sid=6912a135-126c-45cb-a02c-fae08aca5b6f",

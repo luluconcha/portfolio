@@ -46,7 +46,7 @@ function App() {
            
         <Element name="homepage" className="element"> <Homepage /> </Element>
           <Element name="projects" className="element"> <Projects /> </Element>
-            <Element name="demo" className="element"> <TreesPage /> </Element>
+            {/* <Element name="demo" className="element"> <TreesPage /> </Element> */}
               <Element name="cv" className="element"><CV/></Element>
                 <Element name="contact" className="element"><Contact/></Element>
   

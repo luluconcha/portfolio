@@ -131,7 +131,7 @@ p {
 }
 
 .element {
-  min-height: 150vw;
+  min-height: 110vw;
 }
 
 .cv-page {
@@ -262,6 +262,24 @@ p {
 } */
 .projects-cards {
   background: none;
+  border-radius: 12px;
+  height: 15vw;
+  color: #c8d239;
+  padding: 10px;
+  margin: 20px;
+}
+
+#projects-img {
+  border-radius: 12px;
+  border-width: 4px;
+  border-style: dashed;
+  border-color: #c8d239;
+  padding: 10px;
+  margin: 10px;
+}
+
+#projects-img:hover {
+  box-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
 }
 
 .projects-row {
@@ -269,18 +287,17 @@ p {
   align-content: center;
   justify-content: center;
 }
-#projects-img {
-  /* max-width: 10em;
-  max-height: 8em; */
-  object-fit: contain !important;
-  border-radius: 12px;
-}
+
+
 #img-modal {
-  object-fit: contain;
+  max-width: 70vw;
+  max-height: 70vw;
 }
 #video-modal {
   min-height:50vw;
-  max-width: 60vw;
+  max-width: 70vw;
+  max-height: 70vw;
+  min-width: 50vw;
 }
 
 .modal-window {
@@ -289,22 +306,19 @@ p {
  max-height: 80vw;
 }
 
-.projects-cards:hover {
-  box-shadow: 7px 10px 7px rgba(220, 255, 107, 0.87);
-}
+
 .projects-button {
   background-color: black;
   color: #dcff6bde;
-  border: none
+  border: none;
+  border-radius: 56px;
+  width: 50px;
 }
+
 #projects-modal {
   background-color: black !important;
   color: #dcff6bde;
   border: none;
-}
-
-#crystalball-video {
-  width: inherit;
 }
 @font-face {
   font-family: 'BusMatrixCondensed';

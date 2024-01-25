@@ -42,16 +42,20 @@ const getThirdTree = useCallback(async () => {
 
   return (
 
-         <div>
+         <div className="trees-section">
+
           <div className="first-tree">
             {loading ? "loading..." : <Tree /> }
           </div> 
+
+          <div className="second-tree">
+              {loading ? "loading..." : secondTree && <Tree2 leaves={secondTree} setLeaves={setSecondTree} baseNum={nodesForSecondTree}/>}          
+            </div>
+
           <div className="third-tree">
               {loading ? "loading..." : thirdTree && <Tree3 leaves={thirdTree} setLeaves={setThirdTree} baseNum={nodesForThirdTree}/>}
             </div>
-            <div className="second-tree">
-              {loading ? "loading..." : secondTree && <Tree2Testing leaves={secondTree} setLeaves={setSecondTree} baseNum={nodesForSecondTree}/>}          
-            </div>
+           
            
 
           </div>

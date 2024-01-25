@@ -16,9 +16,6 @@ export default function Projects() {
   const [show, setShow] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
 
   const handleClose = () => setShow(false);
 
@@ -62,7 +59,7 @@ export default function Projects() {
             {data && data.map((e) => {
                         if (e.first) {
                             return <Card className="projects-cards" key={`${e.id}`} onClick={() => handleClick(e.tag)}>
-                                        <Card.Img src={`${e.url}`} id="projects-img"/>
+                                        <Card.Img src={`${e.url}`} variant="top" id="projects-img"/>
                                     <Card.Text> {e.tag}</Card.Text>    
                             </Card>
                         }})
@@ -77,10 +74,10 @@ export default function Projects() {
             dialogClassName="modal-window"
             aria-labelledby="contained-modal-title-vcenter"
             centered>
-        <Carousel activeIndex={index} onSelect={handleSelect}>   
+        <Carousel>   
             {wait ? "wait..." : featured && featured.map((f) => {
-                return <Carousel.Item key={`${f.id}`} interval={null}>
-                    <Modal.Header closeButton id="projects-modal">
+                return <Carousel.Item key={`${f.id}`} interval="10000">
+                    <Modal.Header id="projects-modal">
                         <Modal.Title>{f.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body id="projects-modal">
@@ -103,18 +100,18 @@ export default function Projects() {
                                     ? <iframe id="video-modal"
                                         src={`${f.url}`}
                                         title={`${f.title}`}
-                                      
                                         frameBorder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         muted
                                         allowFullScreen>
                                     </iframe>
-                                : "oops! something went wrong..."} 
+                                : "oops! something went wrong..."}
+                         <p id="modal-footer">{f.description}</p>
                     </Modal.Body>
                     <Modal.Footer id="projects-modal">
-                    <p id="modal-footer">{f.description}</p><br />
-                    {f.link && <p id="modal-footer-link"> </p>}
-                        <Button variant="primary" onClick={handleClose} className="projects-button">
+                    
+                    {f.link ? <p id="instructions"> click here to know more </p> : ""}
+                        <Button variant="primary" onClick={handleClose} className="projects-button"><br />
                             close
                             </Button>
                         </Modal.Footer>

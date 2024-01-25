@@ -26,7 +26,7 @@ export default function NavBar() {
           spy={true}
           smooth={true}
           isDynamic={true}
-          offset={-700}
+          offset={-300}
           onSetActive={handleSetActive}
           duration={500}>
             <button type="button">projects</button>
@@ -73,7 +73,7 @@ export default function NavBar() {
           to="homepage"
           spy={true}
           smooth={true}
-          isDynamic={true}
+          // isDynamic={true}
           offset={-700}
           onSetActive={handleSetActive}
           duration={500}>
