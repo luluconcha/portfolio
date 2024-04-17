@@ -266,7 +266,7 @@ p {
   height: 15vw;
   color: #c8d239;
   padding: 10px;
-  margin: 20px;
+  margin: 0px;
 }
 
 #projects-img {
@@ -305,7 +305,9 @@ p {
  max-width: 80vw;
  max-height: 80vw;
 }
-
+#projects-description {
+  overflow: scroll;
+}
 
 .projects-button {
   background-color: black;

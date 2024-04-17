@@ -79,6 +79,9 @@ export default function Projects() {
                 return <Carousel.Item key={`${f.id}`} interval="10000">
                     <Modal.Header id="projects-modal">
                         <Modal.Title>{f.title}</Modal.Title>
+                        <Button variant="primary" onClick={handleClose} className="projects-button"><br />
+                            close
+                            </Button>
                     </Modal.Header>
                     <Modal.Body id="projects-modal">
                         {f.type === "img"
@@ -104,16 +107,15 @@ export default function Projects() {
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         muted
                                         allowFullScreen>
+                                        It seems this video is not working, sorry!
                                     </iframe>
                                 : "oops! something went wrong..."}
-                         <p id="modal-footer">{f.description}</p>
+                         <p id="projects-description">{f.description}</p>
                     </Modal.Body>
                     <Modal.Footer id="projects-modal">
                     
                     {f.link ? <p id="instructions"> click here to know more </p> : ""}
-                        <Button variant="primary" onClick={handleClose} className="projects-button"><br />
-                            close
-                            </Button>
+                        
                         </Modal.Footer>
                     </Carousel.Item>
             })}

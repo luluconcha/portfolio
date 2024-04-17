@@ -41,12 +41,12 @@ function App() {
   return (
     <>
     <header id="navbar-appjsx">
-    <NavBar/> 
+    <NavBar to={to}/> 
       </header>
            
         <Element name="homepage" className="element"> <Homepage /> </Element>
           <Element name="projects" className="element"> <Projects /> </Element>
-            {/* <Element name="demo" className="element"> <TreesPage /> </Element> */}
+          <Element name="demo" className="element"> <TreesPage /> </Element>
               <Element name="cv" className="element"><CV/></Element>
                 <Element name="contact" className="element"><Contact/></Element>
   

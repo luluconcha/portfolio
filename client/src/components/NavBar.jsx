@@ -2,13 +2,15 @@ import React from 'react'
 import { Link, animateScroll as scroll } from "react-scroll";
 import { useState } from 'react';
 
-export default function NavBar() {
+export default function NavBar({to}) {
   
   const [header, setHeader] = useState("welcome")
   const scrollToTop = () => {
     scroll.scrollToTop({smooth: true})
   }
+  useEffect(() => {
 
+  }, [])
   const handleSetActive = (to) => {
     console.log(to);
     to === "homepage" ? setHeader("PORTFOLIO") : setHeader(`${to}`.toUpperCase())
@@ -74,7 +76,7 @@ export default function NavBar() {
           spy={true}
           smooth={true}
           // isDynamic={true}
-          offset={-700}
+          offset={-300}
           onSetActive={handleSetActive}
           duration={500}>
              <button type="button" onClick={scrollToTop}>top</button>
